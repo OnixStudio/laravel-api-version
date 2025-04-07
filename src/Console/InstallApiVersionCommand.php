@@ -27,17 +27,17 @@ class InstallApiVersionCommand extends Command
         if ($this->option('migrate')) {
             $this->call('migrate');
         } else {
-            $this->warn('⚠️ N'oubliez pas de lancer: php artisan migrate');
+            $this->warn("⚠️ N'oubliez pas de lancer: php artisan migrate");
         }
 
         $user = User::first();
         if (!$user) {
-            $this->warn('⚠️ Aucun utilisateur trouvé. Créez-en un via php artisan tinker ou seed.');
+            $this->warn("⚠️ Aucun utilisateur trouvé. Créez-en un via php artisan tinker ou seed.");
             return Command::SUCCESS;
         }
 
         $token = $user->createToken('api-version-token')->plainTextToken;
-        $this->info('🔐 Token généré pour l'utilisateur #' . $user->id . ': ' . $token);
+        $this->info("🔐 Token généré pour l'utilisateur #" . $user->id . ': ' . $token);
 
         return Command::SUCCESS;
     }
