@@ -12,33 +12,31 @@ class InstallApiVersionCommand extends Command
 
     public function handle()
     {
-        if (!class_exists('Laravel\\Sanctum\\SanctumServiceProvider')) {
-            $this->error("❌ Sanctum n'est pas installé. Veuillez d'abord exécuter : composer require laravel/sanctum");
-            return Command::FAILURE;
+        if (!class_exists("Laravel\\Sanctum\\SanctumServiceProvider")) {
+            $this->warn("Sanctum n'est pas encore installé, on s'en occupe !");
+            exec("composer require laravel/sanctum", $output, $returnCode);
+            if ($returnCode !== 0) {
+                $this->error("❌ Erreur pendant l'installation de Sanctum.");
+                return Command::FAILURE;
+            }
         }
-
+    
         $this->callSilent('vendor:publish', [
-            '--provider' => 'Laravel\\Sanctum\\SanctumServiceProvider',
-            '--tag' => 'sanctum-config'
+            '--provider' => "Laravel\\Sanctum\\SanctumServiceProvider",
+            '--tag' => 'sanctum-config',
         ]);
-
-        $this->info('✅ Fichier de config Sanctum publié.');
-
+    
+        $this->callSilent('vendor:publish', [
+            '--provider' => "Laravel\\Sanctum\\SanctumServiceProvider",
+            '--tag' => 'sanctum-migrations',
+        ]);
+    
+        $this->info("✅ Sanctum est installé et configuré.");
+    
         if ($this->option('migrate')) {
             $this->call('migrate');
-        } else {
-            $this->warn("⚠️ N'oubliez pas de lancer: php artisan migrate");
         }
-
-        $user = User::first();
-        if (!$user) {
-            $this->warn("⚠️ Aucun utilisateur trouvé. Créez-en un via php artisan tinker ou seed.");
-            return Command::SUCCESS;
-        }
-
-        $token = $user->createToken('api-version-token')->plainTextToken;
-        $this->info("🔐 Token généré pour l'utilisateur #" . $user->id . ': ' . $token);
-
-        return Command::SUCCESS;
+    
+        // créer token pour le 1er user
     }
 }
