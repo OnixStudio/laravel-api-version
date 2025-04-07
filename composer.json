@@ -1,31 +1,30 @@
 {
-    "name": "onixstudio/laravel-api-version",
-    "description": "Expose Laravel version via API REST sécurisée",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-      {
-        "name": "Guillaume",
-        "email": "guillaume@onixstudio.com"
-      }
-    ],
-    "require": {
-      "php": "^8.1",
-      "illuminate/support": "^10.0|^11.0|^12.0"
-    },
-    "autoload": {
-      "psr-4": {
-        "Onixstudio\\ApiVersion\\": "src/"
-      }
-    },
-    "extra": {
-      "laravel": {
-        "providers": [
-          "Onixstudio\\ApiVersion\\ApiVersionServiceProvider"
-        ]
-      }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
-  }
-  
+  "name": "onixstudio/laravel-api-version",
+  "description": "Expose Laravel version via API REST sécurisée",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Onixstudio",
+      "email": "contact@onixstudio.fr"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "illuminate/support": "^10.0|^11.0|^12.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Onixstudio\\ApiVersion\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Onixstudio\\ApiVersion\\ApiVersionServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

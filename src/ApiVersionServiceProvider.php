@@ -10,4 +10,13 @@ class ApiVersionServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
+
+    public function register()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Onixstudio\ApiVersion\Console\InstallApiVersionCommand::class,
+            ]);
+        }
+    }
 }
