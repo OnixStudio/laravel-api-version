@@ -13,7 +13,7 @@ class InstallApiVersionCommand extends Command
     public function handle()
     {
         if (!class_exists('Laravel\\Sanctum\\SanctumServiceProvider')) {
-            $this->error('❌ Sanctum n'est pas installé. Veuillez d'abord exécuter : composer require laravel/sanctum');
+            $this->error("❌ Sanctum n'est pas installé. Veuillez d'abord exécuter : composer require laravel/sanctum");
             return Command::FAILURE;
         }
 
