@@ -1,6 +1,6 @@
 <?php
 
-namespace TonVendor\ApiVersion;
+namespace Onixstudio\ApiVersion;
 
 use Illuminate\Support\ServiceProvider;
 

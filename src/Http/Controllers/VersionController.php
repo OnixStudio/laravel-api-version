@@ -1,6 +1,6 @@
 <?php
 
-namespace TonVendor\ApiVersion\Http\Controllers;
+namespace Onixstudio\ApiVersion\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Application;
